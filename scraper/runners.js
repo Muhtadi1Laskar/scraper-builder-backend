@@ -3,7 +3,7 @@ import { scrapeMultiple, scrapeSingle } from './scrapers.js';
 
 
 export async function scrapeFromConfig(config) {
-  const browser = await chromium.launch({ headless: false });
+  const browser = await chromium.launch({ headless: true });
   const page = await browser.newPage();
   await page.goto(config.targetURL);
 
