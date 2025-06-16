@@ -1,7 +1,7 @@
 import express from "express";
 import { scrapeFromConfig } from "./scraper/runners.js";
 
-const port = process.env.port || 8080;
+const port = process.env.port || 3000;
 const app = express();
 
 app.use(express.json());
