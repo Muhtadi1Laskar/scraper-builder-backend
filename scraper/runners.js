@@ -1,32 +1,5 @@
 import { chromium } from 'playwright';
-
-// Strategy pattern for different selector types and modes
-const scrapeStrategies = {
-  tag: {
-    single: async (page, selector) => {
-      return await page.$eval(selector.value, el => el.textContent.trim());
-    },
-    multiple: async (page, selector) => {
-      return await page.$$eval(selector.value, els => els.map(el => el.textContent.trim()));
-    },
-  },
-  class: {
-    single: async (page, selector) => {
-      return await page.$eval(`.${selector.value}`, el => el.textContent.trim());
-    },
-    multiple: async (page, selector) => {
-      return await page.$$eval(`.${selector.value}`, els => els.map(el => el.textContent.trim()));
-    },
-  },
-  id: {
-    single: async (page, selector) => {
-      return await page.$eval(`#${selector.value}`, el => el.textContent.trim());
-    },
-    multiple: async (page, selector) => {
-      return [await page.$eval(`#${selector.value}`, el => el.textContent.trim())];
-    },
-  },
-};
+import { scrapeStrategies } from './scraperStrategy.js';
 
 const scrapeMultiple = async (page, config) => {
   const fieldsArray = {};
@@ -63,16 +36,16 @@ const scrapeMultiple = async (page, config) => {
 const scrapeSingle = async (page, config) => {
   const results = {};
 
-  for(const selector of config.selectors) {
+  for (const selector of config.selectors) {
     const strategyType = scrapeStrategies[selector.type];
-    if(!strategyType) continue;
+    if (!strategyType) continue;
 
     const strategyFn = strategyType[selector.mode];
-    if(!strategyFn) continue;
+    if (!strategyFn) continue;
 
     try {
       results[selector.name] = await strategyFn(page, selector);
-    } catch(error) {
+    } catch (error) {
       results[selector.name] = [];
       console.error(`Error scraping ${selector.name}, `, error);
     }
