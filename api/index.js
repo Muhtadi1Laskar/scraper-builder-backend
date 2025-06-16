@@ -1,5 +1,5 @@
 import express from "express";
-import { scrapeFromConfig } from "./scraper/runners.js";
+import { scrapeFromConfig } from "../scraper/runners.js";
 
 const port = process.env.port || 3000;
 const app = express();
