@@ -23,4 +23,4 @@ export const scrapeStrategies = {
             return [await page.$eval(`#${selector.value}`, el => el.textContent.trim())];
         },
     },
-}
+};

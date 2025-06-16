@@ -2,7 +2,10 @@
   "name": "scraper-builder",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
   "keywords": [],
   "type": "module",
   "author": "",
@@ -10,9 +13,11 @@
   "description": "",
   "devDependencies": {
     "@playwright/test": "^1.53.0",
-    "@types/node": "^24.0.1"
+    "@types/node": "^24.0.1",
+    "nodemon": "^3.1.10"
   },
   "dependencies": {
     "express": "^5.1.0"
   }
 }
+
