@@ -21,4 +21,4 @@ app.get("/build-scraper", async (req, res) => {
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
-module.exports = app;
+export default app;
