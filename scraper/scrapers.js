@@ -34,6 +34,7 @@ export const scrapeMultiple = async (page, config) => {
 
 export const scrapeSingle = async (page, config) => {
     const results = {};
+    const final = []
 
     for (const selector of config.selectors) {
         const strategyType = scrapeStrategies[selector.type];
@@ -49,5 +50,7 @@ export const scrapeSingle = async (page, config) => {
             console.error(`Error scraping ${selector.name}, `, error);
         }
     }
-    return results;
+    final.push(results);
+
+    return final;
 }
